@@ -1,17 +1,20 @@
 package main
 
 import (
-   "fmt"
-   "net/http"
+	"log"
+	"net/http"
 )
 
 func main() {
-   fmt.Println("service start")
-
-   http.HandleFunc("/", func(writer http.ResponseWriter, request *http.Request) {
-      fmt.Fprint(writer,"Hello Docker")
-   })
-   http.ListenAndServe(":8888",nil)
-
+	log.Println("start server at localhost:8080")
+	http.HandleFunc("/readyz", func(w http.ResponseWriter, r *http.Request) {
+		log.Println(r.Method, r.ParseForm)
+		w.WriteHeader(200)
+		w.Write([]byte("ok"))
+	})
+	http.HandleFunc("/healthz", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(200)
+		w.Write([]byte("ok"))
+	})
+	log.Fatal(http.ListenAndServe(":8081", nil))
 }
-

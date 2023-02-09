@@ -8,7 +8,7 @@ ADD main.go /app
 
 RUN go build -o main ./main.go 
 
-EXPOSE 8888        
+EXPOSE 8081
 
 CMD /app/main      
  

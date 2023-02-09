@@ -1,4 +1,16 @@
-​         
+```bash
+docker build -t liveness:v1 .
+docker run -p 8081:8081 liveness:v1
+docker save liveness:v1 -o livev1.tar
+docker load -i livev1.tar
+kubectl apply -f http-liveness.yaml
+```
+
+# 参考
+
+https://github.com/kubernetes/kubernetes/blob/master/test/images/agnhost/liveness/server.go
+
+https://kubernetes.io/zh-cn/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
 
 [如何编写dockerfile来部署go项目     小饶coding      2021年12月01](https://juejin.cn/post/7036670636978077703)
 
@@ -8,7 +20,7 @@
 > docker run -p 8888:8888 my_docker_test 
 > ```
 
-
+## Error
 
 ```bash
 [mifen@hp go-docker]$ docker run -p 8888:8888 my_docker_test 
@@ -18,3 +30,4 @@ iptables v1.8.9 (nf_tables):  RULE_APPEND failed (No such file or directory): ru
 ERRO[0000] error waiting for container: context canceled 
 ```
 
+原来是端口冲突，8888已经被占用了
