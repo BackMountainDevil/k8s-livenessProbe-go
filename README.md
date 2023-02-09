@@ -1,10 +1,13 @@
 ```bash
-docker build -t liveness:v1 .
-docker run -p 8081:8081 liveness:v1
-docker save liveness:v1 -o livev1.tar
-docker load -i livev1.tar
+docker build -t liveness:v2 .
+docker run -p 8081:8081 liveness:v2
+docker save liveness:v2 -o livev2.tar
+docker load -i livev2.tar
 kubectl apply -f http-liveness.yaml
+kubectl delete -f http-liveness.yaml
 ```
+
+测试表明，不需要在 Dockerfile 暴露端口，k8s 的 readinessProbe、livenessProbe 也是可以正常工作的
 
 # 参考
 

@@ -8,7 +8,7 @@ spec:
   nodeName: node01
   containers:
   - name: liveness
-    image: liveness:v1
+    image: liveness:v2
     livenessProbe:
       httpGet:
         path: /healthz
