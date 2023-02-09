@@ -2,12 +2,15 @@
 docker build -t liveness:v2 .
 docker run -p 8081:8081 liveness:v2
 docker save liveness:v2 -o livev2.tar
+docker rmi  liveness:v2
 docker load -i livev2.tar
 kubectl apply -f http-liveness.yaml
 kubectl delete -f http-liveness.yaml
 ```
 
 测试表明，不需要在 Dockerfile 暴露端口，k8s 的 readinessProbe、livenessProbe 也是可以正常工作的
+
+测试表明，kind 中也能够进行存活探针检测（需要把 yaml 中的 nodeName 注销掉）
 
 # 参考
 
