@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	log.Println("start server at localhost:8080")
+	log.Println("start server at localhost:8081")
 	http.HandleFunc("/readyz", func(w http.ResponseWriter, r *http.Request) {
 		log.Println(r.Method, r.ParseForm)
 		w.WriteHeader(200)

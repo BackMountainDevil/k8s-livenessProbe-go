@@ -23,6 +23,8 @@ https://kubernetes.io/zh-cn/docs/tasks/configure-pod-container/configure-livenes
 > docker run -p 8888:8888 my_docker_test 
 > ```
 
+[golang http.ListenAndServe 阻塞导致if else不执行问题分析 2019-11-29 ](http://blog.yoqi.me/lyq/16889.html)
+
 ## Error
 
 ```bash
